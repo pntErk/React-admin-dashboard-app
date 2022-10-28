@@ -1,7 +1,7 @@
 import { createContext, useState, useMemo } from "react";
 import { createTheme } from "@mui/material/styles";
 
-// color design tokens
+// color design tokens export
 export const tokens = (mode) => ({
   ...(mode === "dark"
     ? {
@@ -16,19 +16,17 @@ export const tokens = (mode) => ({
           800: "#292929",
           900: "#141414",
         },
-
         primary: {
           100: "#d0d1d5",
           200: "#a1a4ab",
           300: "#727681",
-          400: "#434957",
+          400: "#1F2A40",
           500: "#141b2d",
           600: "#101624",
           700: "#0c101b",
           800: "#080b12",
           900: "#040509",
         },
-
         greenAccent: {
           100: "#dbf5ee",
           200: "#b7ebde",
@@ -40,7 +38,6 @@ export const tokens = (mode) => ({
           800: "#1e5245",
           900: "#0f2922",
         },
-
         redAccent: {
           100: "#f8dcdb",
           200: "#f1b9b7",
@@ -52,7 +49,6 @@ export const tokens = (mode) => ({
           800: "#58201e",
           900: "#2c100f",
         },
-
         blueAccent: {
           100: "#e1e2fe",
           200: "#c3c6fd",
@@ -77,19 +73,17 @@ export const tokens = (mode) => ({
           800: "#c2c2c2",
           900: "#e0e0e0",
         },
-
         primary: {
           100: "#040509",
           200: "#080b12",
           300: "#0c101b",
-          400: "#f2f0f0",
+          400: "#f2f0f0", // manually changed
           500: "#141b2d",
-          600: "#434957",
+          600: "#1F2A40",
           700: "#727681",
           800: "#a1a4ab",
           900: "#d0d1d5",
         },
-
         greenAccent: {
           100: "#0f2922",
           200: "#1e5245",
@@ -101,7 +95,6 @@ export const tokens = (mode) => ({
           800: "#b7ebde",
           900: "#dbf5ee",
         },
-
         redAccent: {
           100: "#2c100f",
           200: "#58201e",
@@ -113,17 +106,16 @@ export const tokens = (mode) => ({
           800: "#f1b9b7",
           900: "#f8dcdb",
         },
-
         blueAccent: {
-          900: "#151632",
-          800: "#2a2d64",
-          700: "#3e4396",
-          600: "#535ac8",
+          100: "#151632",
+          200: "#2a2d64",
+          300: "#3e4396",
+          400: "#535ac8",
           500: "#6870fa",
-          400: "#868dfb",
-          300: "#a4a9fc",
-          200: "#c3c6fd",
-          100: "#e1e2fe",
+          600: "#868dfb",
+          700: "#a4a9fc",
+          800: "#c3c6fd",
+          900: "#e1e2fe",
         },
       }),
 });
@@ -131,12 +123,12 @@ export const tokens = (mode) => ({
 // mui theme settings
 export const themeSettings = (mode) => {
   const colors = tokens(mode);
-
   return {
     palette: {
       mode: mode,
       ...(mode === "dark"
         ? {
+            // palette values for dark mode
             primary: {
               main: colors.primary[500],
             },
@@ -148,11 +140,12 @@ export const themeSettings = (mode) => {
               main: colors.grey[500],
               light: colors.grey[100],
             },
-            backgroud: {
+            background: {
               default: colors.primary[500],
             },
           }
         : {
+            // palette values for light mode
             primary: {
               main: colors.primary[100],
             },
@@ -164,7 +157,7 @@ export const themeSettings = (mode) => {
               main: colors.grey[500],
               light: colors.grey[100],
             },
-            backgroud: {
+            background: {
               default: "#fcfcfc",
             },
           }),
@@ -215,7 +208,7 @@ export const useMode = () => {
     }),
     []
   );
-  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
 
+  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   return [theme, colorMode];
 };
